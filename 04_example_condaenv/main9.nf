@@ -28,4 +28,7 @@ workflow {
     foo()
     bar(foo.out.wc_out)
     bar.out.view()
+    
+    emit: 
+      bar.out
 }
