@@ -1,6 +1,7 @@
 nextflow.preview.dsl=2
 
 process foo {
+    publishDir '.'
 
     output:
       path '*.txt.gz', emit: gse_matrix
@@ -16,10 +17,10 @@ process foo {
     input:
       path x
     output:
-      path 'bar.txt'
+      path 'gse_no_header.txt'
     script:
       """
-      gunzip -c $x | wc -l > bar.txt
+      gunzip -c $x | grep -v '^[#!]' > gse_no_header.txt
       """
 }
 
